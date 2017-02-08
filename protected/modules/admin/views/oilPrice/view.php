@@ -1,10 +1,10 @@
 <section class="content-header">
     <h1>
-        Expense
+        Oil Price
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo base_url() . '/admin/dashboard'; ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="<?php echo base_url() . '/admin/expenses'; ?>"><i class="fa fa-dashboard"></i> Expense</a></li>
+        <li><a href="<?php echo base_url() . '/admin/oilPrice'; ?>"><i class="fa fa-dashboard"></i> Oil Price</a></li>
         <li class="active">View</li>
     </ol>
 </section>
@@ -19,7 +19,7 @@
 							echo $model->product_type; 
 						?> 
                         <small>
-                            <a href="<?php echo base_url() . '/admin/expenses/update?id=' . $model->id; ?>">EDIT</a>
+                            <a href="<?php echo base_url() . '/admin/oilPrice/update?id=' . $model->id; ?>">EDIT</a>
                         </small>
                     </h3>
                 </div>
@@ -38,7 +38,7 @@
                         ));
                         ?>
                         <div class="col-xs-12">
-                            <?php echo CHtml::link('Back', array('/admin/expenses'), array("class" => 'btn btn-info pull-right', "style" => "margin-left:10px;")); ?>
+                            <?php echo CHtml::link('Back', array('/admin/oilPrice'), array("class" => 'btn btn-info pull-right', "style" => "margin-left:10px;")); ?>
                         </div>
                     </div>
 
