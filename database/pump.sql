@@ -72,8 +72,9 @@ CREATE TABLE `commission` (
 
 CREATE TABLE `expenses` (
   `id` char(36) NOT NULL,
-  `detail` varchar(255) NOT NULL,
+  `detail` text NOT NULL,
   `amount` varchar(16) NOT NULL,
+  `expense_date` date NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `created_by` char(36) NOT NULL,
