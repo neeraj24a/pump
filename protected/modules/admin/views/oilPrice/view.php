@@ -26,8 +26,7 @@
                 <div class="box-body">
                     <div class="col-xs-12 table-responsive">
                         <?php
-						$model->product_type = ProductType::model()->findByPk($model->product_type)->name;
-                        $this->widget('zii.widgets.CDetailView', array(
+			$this->widget('zii.widgets.CDetailView', array(
                             // 'itemsCssClass' => 'table table-bordered table-hover dataTable',
                             'htmlOptions' => array("class" => "table table-bordered table-hover dataTable"),
                             'data' => $model,
