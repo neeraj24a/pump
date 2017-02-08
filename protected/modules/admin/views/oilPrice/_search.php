@@ -1,65 +1,22 @@
-<?php
-/* @var $this OilPriceController */
-/* @var $model OilPrice */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
+	'htmlOptions'=>array('class' => 'search-form')
 )); ?>
-
-	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id',array('size'=>36,'maxlength'=>36)); ?>
+<div class="box-body">
+	<div class="form-group">
+		<div class="col-xs-4">
+			<?php echo $form->label($model,'product_type'); ?>
+			<?php 
+				$all = ProductType::model()->findAll(); 
+				$products = CHtml::listData($all, 'id', 'name'); 
+			?>
+			<?php echo $form->dropDownList($model,'product_type',$products,array('empty' => "Select Product",'class' => 'form-control')); ?>
+		</div>
 	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'product_type'); ?>
-		<?php echo $form->textField($model,'product_type',array('size'=>36,'maxlength'=>36)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'price'); ?>
-		<?php echo $form->textField($model,'price',array('size'=>16,'maxlength'=>16)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'deleted'); ?>
-		<?php echo $form->textField($model,'deleted'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'created_by'); ?>
-		<?php echo $form->textField($model,'created_by',array('size'=>36,'maxlength'=>36)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'updated_by'); ?>
-		<?php echo $form->textField($model,'updated_by',array('size'=>36,'maxlength'=>36)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'date_entered'); ?>
-		<?php echo $form->textField($model,'date_entered'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'date_modified'); ?>
-		<?php echo $form->textField($model,'date_modified'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
-	</div>
-
+</div>
+<div class="box-footer">
+	<?php echo CHtml::submitButton('Search',array("class" => 'btn btn-info search-button')); ?>
+	<a href="<?php echo base_url().'/admin/oilPrice/manage' ?>" class="btn btn-warning">Clear</a>
+</div>
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->
