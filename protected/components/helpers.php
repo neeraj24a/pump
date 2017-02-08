@@ -691,66 +691,29 @@ function elipsis($string, $repl, $limit) {
         return $string;
     }
 }
-
-function getPlanDurationLabelPaypal($duration) {
-    $label = '';
-    if ($duration == 'day') {
-        $label = "D";
-    } else if ($duration == 'week') {
-        $label = "W";
-    } else if ($duration == 'month') {
-        $label = "M";
-    } else if ($duration == 'year') {
-        $label = "Y";
+function getLastNDays($days, $format = 'd/m'){
+    $m = date("m"); $de= date("d"); $y= date("Y");
+    $dateArray = array();
+    for($i=$days-1; $i>=0; $i--){
+        $dateArray[] = '"' . date($format, mktime(0,0,0,$m,($de-$i),$y)) . '"'; 
     }
-    return $label;
+    return array_reverse($dateArray);
 }
 
-function time_elapsed_string($datetime, $full = false) {
-    $now = new DateTime;
-    $ago = new DateTime($datetime);
-    $diff = $now->diff($ago);
-
-    $diff->w = floor($diff->d / 7);
-    $diff->d -= $diff->w * 7;
-
-    $string = array(
-        'y' => 'year',
-        'm' => 'month',
-        'w' => 'week',
-        'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
-    );
-    foreach ($string as $k => &$v) {
-        if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-        } else {
-            unset($string[$k]);
-        }
+function getLastNDays($days){
+    $days = [];
+    for($i=7;$i>=1;$i--)
+    {
+        $date = new DateTime();
+        $date->add(new DateInterval('P'.$i.'D'));
+        array_push($days,$date->format('l'));
     }
-
-    if (!$full)
-        $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
+    return $days;
 }
 
-function getNotificationCount($user_id) {
-    Yii::import("application.modules.home.models.Users", true);
-    return Users::model()->getNotificationCount($user_id);
-}
 
-// function for getting the notification url
 
-function getNotificationUrl($notification_type, $related_to_id) {
-    $url = '#';
-    Yii::import("application.modules.home.models.Songs", true);
-    $song_detail = Songs::model()->findByPk($related_to_id);
-    if ($notification_type == 'LIKE' || $notification_type == 'SHARE' || $notification_type == 'POST' || $notification_type == 'COMMENT' ) {
-        $url = base_url() . "/media?name=$song_detail->slug";
-    }
-    return $url;
-}
+
+
 
 ?>
