@@ -7,7 +7,7 @@
 	<div class="form-group">
 		<div class="col-xs-4">
 			<?php echo $form->label($model,'expense_date'); ?>
-			<?php echo $form->textField($model,'expense_date',array('size'=>60,'maxlength'=>255,'class' => 'form-control')); ?>
+			<?php echo $form->textField($model,'expense_date',array('size'=>60,'maxlength'=>255,'class' => 'form-control bootstrap-datepicker')); ?>
 		</div>
 	</div>
 </div>
