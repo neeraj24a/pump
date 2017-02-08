@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $detail
  * @property string $amount
+ * @property string $expense_date
  * @property integer $status
  * @property integer $deleted
  * @property string $created_by
@@ -32,14 +33,14 @@ class Expenses extends AdminBaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, detail, amount, created_by, updated_by, date_entered, date_modified', 'required'),
+			array('id, detail, amount, expense_date, created_by, updated_by, date_entered, date_modified', 'required'),
 			array('status, deleted', 'numerical', 'integerOnly'=>true),
 			array('id, created_by, updated_by', 'length', 'max'=>36),
 			array('detail', 'length', 'max'=>255),
 			array('amount', 'length', 'max'=>16),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, detail, amount, status, deleted, created_by, updated_by, date_entered, date_modified', 'safe', 'on'=>'search'),
+			array('id, detail, amount, expense_date, status, deleted, created_by, updated_by, date_entered, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +64,7 @@ class Expenses extends AdminBaseModel
 			'id' => 'ID',
 			'detail' => 'Detail',
 			'amount' => 'Amount',
+			'expense_date' => 'Expense Date',
 			'status' => 'Status',
 			'deleted' => 'Deleted',
 			'created_by' => 'Created By',
@@ -93,6 +95,7 @@ class Expenses extends AdminBaseModel
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('detail',$this->detail,true);
 		$criteria->compare('amount',$this->amount,true);
+		$criteria->compare('expense_date',$this->expense_date,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('deleted',$this->deleted);
 		$criteria->compare('created_by',$this->created_by,true);
