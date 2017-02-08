@@ -691,7 +691,7 @@ function elipsis($string, $repl, $limit) {
         return $string;
     }
 }
-function getLastNDays($days, $format = 'd/m'){
+function getLastNDates($days, $format = 'd/m'){
     $m = date("m"); $de= date("d"); $y= date("Y");
     $dateArray = array();
     for($i=$days-1; $i>=0; $i--){

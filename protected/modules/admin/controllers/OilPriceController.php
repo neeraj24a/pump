@@ -164,4 +164,9 @@ class OilPriceController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function getProduct($row)
+	{
+		return ProductType::model()->findByPk($row->product_type)->name;
+	}
 }

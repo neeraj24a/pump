@@ -58,7 +58,7 @@
                                     // 'filter'=>$model,
                                     'columns' => array(
 										'amount',
-										'expense_date'
+										'expense_date',
                                         array(
                                             'class' => 'CButtonColumn',
                                             'template' => '{v} {u} {d}', // <-- TEMPLATE WITH THE TWO STATES

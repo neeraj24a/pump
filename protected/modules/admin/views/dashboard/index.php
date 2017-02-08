@@ -23,13 +23,17 @@
     </div>     
 </section>
 <script>
+	var categories = new Array();
+    <?php foreach($days as $day){ ?>
+        categories.push('<?php echo $day; ?>');
+    <?php } ?>
     Highcharts.chart('container', {
     chart: {
         type: 'area',
         inverted: true
     },
     title: {
-        text: 'Average fruit consumption during one week'
+        text: 'Average oil consumption during one week'
     },
     subtitle: {
         style: {
@@ -58,7 +62,7 @@
             'Saturday',
             'Sunday'
         ]*/
-        categories: <?php echo $days; ?>
+        categories: categories
     },
     yAxis: {
         title: {

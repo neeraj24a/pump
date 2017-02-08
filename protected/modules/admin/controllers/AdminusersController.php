@@ -8,16 +8,30 @@ class AdminusersController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
-	protected function beforeAction($action)
+	public function filters()
 	{
-		if (!parent::beforeAction($action)) {
-	        return false;
-	    }
-		if(isFrontUserLoggedIn()){
-			return true;
-		} else {
-			$this->redirect(CController::createUrl("/admin/login"));
-		}
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all authenticated users to perform 'index' actions
+				'actions'=>array('index','view','create','update','manage','delete'),
+				'users'=>array('@'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
 	}
 
 	/**
@@ -38,8 +52,6 @@ class AdminusersController extends Controller
 	public function actionCreate()
 	{
 		$model=new Adminusers;
-		$countries = Countries::model()->findAll(array('order' => 'name ASC'));
-		$countries = CHtml::listData($countries, 'id', 'name');
 		$roles = getParam('admin_roles');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -53,7 +65,6 @@ class AdminusersController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'countries'=>$countries,
 			'roles'=>$roles
 		));
 	}
@@ -66,26 +77,23 @@ class AdminusersController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		// pre($model->country_id,true);
-		$countries = Countries::model()->findAll(array('order' => 'name ASC'));
-		$countries = CHtml::listData($countries, 'id', 'name');
+		$prev_password = $model->password;
+		//pre($model,true);
 		$roles = getParam('admin_roles');
-		$states = States::model()->findAll(array('condition' => "country_id = '$model->country_id'",'order' => 'name ASC'));
-		$states = CHtml::listData($states, 'id', 'name');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Adminusers']))
 		{
 			$model->attributes=$_POST['Adminusers'];
+			$model->password = $prev_password;
+			$model->verifyPassword = $prev_password;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'countries'=>$countries,
-			'states'=>$states,
 			'roles'=>$roles
 		));
 	}

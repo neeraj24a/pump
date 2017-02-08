@@ -28,7 +28,7 @@ class SaleController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','index','view','loadnozzles'),
+				'actions'=>array('create','update','index','view','loadnozzles','saleprice'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -149,6 +149,13 @@ class SaleController extends Controller
 			}
 		}
 		echo $html;
+	}
+	
+	public function actionSaleprice()
+	{
+		$product = $_POST['product'];
+		$price = OilPrice::model()->find(array("condition" => "product_type = '".$product."'"));
+		echo $price->price;
 	}
 
 	/**

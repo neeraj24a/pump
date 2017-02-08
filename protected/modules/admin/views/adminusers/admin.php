@@ -1,11 +1,11 @@
 <section class="content-header">
     <h1>
         Manage
-        <small>Oil Price</small>
+        <small>Admin Users</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo base_url() . '/admin/dashboard'; ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="<?php echo base_url() . '/admin/oilPrice'; ?>"><i class="fa fa-dashboard"></i> Oil Price</a></li>
+        <li><a href="<?php echo base_url() . '/admin/adminusers'; ?>"><i class="fa fa-dashboard"></i> Admin Users</a></li>
         <li class="active">Manage</li>
     </ol>
 </section>
@@ -20,7 +20,7 @@
                 <?php
                 Yii::app()->clientScript->registerScript('search', "
 						$('form.search-form').submit(function(){
-							$('#oil-price-grid').yiiGridView('update', {
+							$('#adminusers-grid').yiiGridView('update', {
 								data: $(this).serialize()
 							});
 							return false;
@@ -34,15 +34,14 @@
             <div class="box">
                 <div class="box-header">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <h3 class="box-title">Oil Price List</h3>
+                        <div class="col-sm-8">
+                            <h3 class="box-title">Admin Users List</h3>
                         </div>
-			<!--
                         <div class="col-sm-4">
-                            <a href="<!--?php echo base_url() . '/admin/oilPrice/create'; ?>">
-                                <button class="btn btn-block btn-primary">Add Oil Price</button>
+                            <a href="<?php echo base_url() . '/admin/adminusers/create'; ?>">
+                                <button class="btn btn-block btn-primary">Add Admin User</button>
                             </a>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
                 <div class="box-body">
@@ -52,37 +51,39 @@
                             <div class="col-sm-12 table-responsive">
                                 <?php
                                 $this->widget('zii.widgets.grid.CGridView', array(
-                                    'id' => 'oil-price-grid',
+                                    'id' => 'adminusers-grid',
                                     'itemsCssClass' => 'table table-bordered table-hover dataTable',
                                     'dataProvider' => $model->search(),
                                     'enablePagination' => true,
                                     // 'filter'=>$model,
                                     'columns' => array(
+                                    	'username',
+                                        'email',
+                                        'first_name',
+                                        'last_name',
                                         array(
-                                            'name' => 'Product',
-                                            'value' => array($this, 'getProduct'),
-                                        ),
-					array(
-                                            'name' => 'Price',
-                                            'value' => '$data->price',
-                                        ),
-                                        array(
-                                            'class' => 'CButtonColumn',
-                                            'template' => '{v} {u}', // <-- TEMPLATE WITH THE TWO STATES
-                                            'htmlOptions' => array(
-                                                'width' => 80,
+                                            'class'=>'CButtonColumn',
+                                            'template'=>'{v} {u} {d}', // <-- TEMPLATE WITH THE TWO STATES
+                                            'htmlOptions'=>array(
+                                                    'width'=>80,
                                             ),
                                             'buttons' => array(
-                                                'v' => array(
-                                                    'label' => '<i class="fa fa-search"></i>',
-                                                    'url' => 'Yii::app()->createUrl("admin/oilPrice/view", array("id"=>$data->id))',
-                                                    'options' => array('class' => 'view', 'title' => 'View'),
+                                                'v'=>array(
+                                                        'label'=>'<i class="fa fa-search"></i>',
+                                                        'url'=>'Yii::app()->createUrl("admin/adminusers/view", array("id"=>$data->id))',
+                                                        'options'=>array('class'=>'view','title'=>'View'),
                                                 ),
-                                                'u' => array(
-                                                    'label' => '<i class="fa fa-edit"></i>',
-                                                    'url' => 'Yii::app()->createUrl("admin/oilPrice/update", array("id"=>$data->id))',
-                                                    'options' => array('class' => 'edit', 'title' => 'Update'),
-                                                )
+                                                'u'=>array(
+                                                        'label'=>'<i class="fa fa-edit"></i>',
+                                                        'url'=>'Yii::app()->createUrl("admin/adminusers/update", array("id"=>$data->id))',
+                                                        'options'=>array('class'=>'edit','title'=>'Update'),
+                                                ),
+                                                'd'=>array(
+                                                        'label'=>'<i class="fa fa-trash"></i>',
+                                                        'url'=>'Yii::app()->createUrl("admin/adminusers/delete", array("id"=>$data->id))',
+                                                        'options'=>array('class'=>'delete','title'=>'Delete'),
+                                                        'click'=>'function(){return confirm("are you sure ?");}'
+                                                ),
                                             ),
                                         )
                                     ),

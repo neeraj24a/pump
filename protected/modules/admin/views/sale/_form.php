@@ -110,5 +110,41 @@ jQuery(function($) {
 	});	
 });
 /*]]>*/
+/*<![CDATA[*/
+jQuery(function($) {
+	jQuery.ajax({
+		'type':'POST',
+		'url':'<?php echo Yii::app()->createUrl('admin/sale/saleprice'); ?>',
+		'data':{'product':'<?php echo $model->product_type; ?>'},
+		'cache':false,
+		'success':function(data){
+			jQuery("#Sale_sale_price").val(data);
+			jQuery("#sale_price").val(data);
+		}
+	});	
+});
+/*]]>*/
 <?php endif; ?>
+/*<![CDATA[*/
+jQuery(function($) {
+	jQuery("#Sale_product_type").on("change",function(){
+		if(jQuery(this).val() != ""){
+			var product = jQuery(this).val();
+			jQuery.ajax({
+				'type':'POST',
+				'url':'<?php echo Yii::app()->createUrl('admin/sale/saleprice'); ?>',
+				'data':{'product':product},
+				'cache':false,
+				'success':function(data){
+					jQuery("#Sale_sale_price").val(data);
+					jQuery("#sale_price").val(data);
+				}
+			});
+		} else {
+			jQuery("#Sale_sale_price").val("");
+			jQuery("#sale_price").val("");
+		}
+	});		
+});
+/*]]>*/
 </script>

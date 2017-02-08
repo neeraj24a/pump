@@ -100,11 +100,8 @@
             <li><a href="<?php echo base_url()."/admin/sale"; ?>"><i class="fa fa-users"></i> <span>Daily Sale</span></a></li>
 			<li><a href="<?php echo base_url()."/admin/mobil"; ?>"><i class="fa fa-users"></i> <span>Mobil</span></a></li>
 			<li><a href="<?php echo base_url()."/admin/expenses"; ?>"><i class="fa fa-users"></i> <span>Daily Expense</span></a></li>
-			<li><a href="<?php echo base_url()."/admin/frontusers"; ?>"><i class="fa fa-users"></i> <span>Dues</span></a></li>
-			<li><a href="<?php echo base_url()."/admin/frontusers"; ?>"><i class="fa fa-users"></i> <span>Dues Clearance</span></a></li>
-			<li>
-              <a href="<?php echo base_url()."/admin/transactions"; ?>"><i class="fa fa-university"></i> <span>Party Report</span></a>
-            </li>
+			<li><a href="<?php echo base_url()."/admin/oilPrice"; ?>"><i class="fa fa-users"></i> <span>Oil Price</span></a></li>
+			<li><a href="<?php echo base_url()."/admin/commission"; ?>"><i class="fa fa-users"></i> <span>Commission</span></a></li>
 			<li><a href="<?php echo base_url()."/admin/adminusers"; ?>"><i class="fa fa-users"></i> <span>Users</span></a></li>
           </ul>
         </section>

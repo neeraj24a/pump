@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2017 at 06:19 AM
+-- Generation Time: Feb 08, 2017 at 09:26 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -64,6 +64,14 @@ CREATE TABLE `commission` (
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commission`
+--
+
+INSERT INTO `commission` (`id`, `product_type`, `amount`, `status`, `deleted`, `created_by`, `updated_by`, `date_entered`, `date_modified`) VALUES
+('1487f786-c825-ca8b-5cbe-589b73b7c43b', '9fc1e394-bb30-d8ed-9ae6-588901791070', '1.00', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 20:37:30', '2017-02-08 20:37:30'),
+('c4155d2c-cf6e-5c84-d4f0-589b73455468', '1fe133e6-7c77-0021-aefd-5889018162a5', '0.60', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 20:37:53', '2017-02-08 20:37:53');
+
 -- --------------------------------------------------------
 
 --
@@ -72,7 +80,7 @@ CREATE TABLE `commission` (
 
 CREATE TABLE `expenses` (
   `id` char(36) NOT NULL,
-  `detail` text NOT NULL,
+  `detail` varchar(255) NOT NULL,
   `amount` varchar(16) NOT NULL,
   `expense_date` date NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
@@ -82,6 +90,13 @@ CREATE TABLE `expenses` (
   `date_entered` datetime NOT NULL,
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `detail`, `amount`, `expense_date`, `status`, `deleted`, `created_by`, `updated_by`, `date_entered`, `date_modified`) VALUES
+('708c1931-0598-e13d-df0b-589b71a149a9', 'Lorem Ipsum is a dummy text', '5000', '2017-02-09', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 20:31:05', '2017-02-08 20:31:05');
 
 -- --------------------------------------------------------
 
@@ -147,6 +162,14 @@ CREATE TABLE `oil_price` (
   `date_entered` datetime NOT NULL,
   `date_modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `oil_price`
+--
+
+INSERT INTO `oil_price` (`id`, `product_type`, `price`, `status`, `deleted`, `created_by`, `updated_by`, `date_entered`, `date_modified`) VALUES
+('1626c47d-3fa3-a778-e1e6-589b720de883', '9fc1e394-bb30-d8ed-9ae6-588901791070', '72.59', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 20:35:08', '2017-02-08 20:35:08'),
+('44fb0e78-ce12-5adf-5712-589b73848e0b', '1fe133e6-7c77-0021-aefd-5889018162a5', '59.60', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 20:36:50', '2017-02-08 20:36:50');
 
 -- --------------------------------------------------------
 
@@ -229,7 +252,9 @@ CREATE TABLE `sale` (
 --
 
 INSERT INTO `sale` (`id`, `product_type`, `nozzle`, `mobil`, `opening_meter`, `closing_meter`, `sale_quantity`, `sale_price`, `sale_amount`, `remarks`, `status`, `deleted`, `created_by`, `updated_by`, `date_entered`, `date_modified`) VALUES
-('727e5845-9b8d-ce83-da98-5889205b0a56', '9fc1e394-bb30-d8ed-9ae6-588901791070', 'c3b37444-e2ad-e8e8-e4e5-5889025c78c0', '', '65000', '70000', '5000', '64.86', '64.86', 'Sale for 26/01/2017', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-01-25 23:03:06', '2017-01-25 23:03:06');
+('727e5845-9b8d-ce83-da98-5889205b0a56', '9fc1e394-bb30-d8ed-9ae6-588901791070', 'c3b37444-e2ad-e8e8-e4e5-5889025c78c0', '', '65000', '70000', '5000', '64.86', '64.86', 'Sale for 26/01/2017', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-01-25 23:03:06', '2017-01-25 23:03:06'),
+('9f66cd7d-1e2f-8267-0088-589b7820a385', '9fc1e394-bb30-d8ed-9ae6-588901791070', 'c3b37444-e2ad-e8e8-e4e5-5889025c78c0', '', '152489', '160021', '7532', '72.59', '72.59', 'Lorem Ipsum', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 20:59:44', '2017-02-08 20:59:44'),
+('d2c6190f-83e1-e655-30fa-589b79b59d38', '1fe133e6-7c77-0021-aefd-5889018162a5', 'cd58021c-22e0-176c-146b-5889027a9486', '', '12489', '15669', '3180', '59.60', '59.60', 'Lorem Ipsum', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-02-08 21:04:43', '2017-02-08 21:04:43');
 
 -- --------------------------------------------------------
 
@@ -276,7 +301,7 @@ CREATE TABLE `users` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `created_by` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `modified_by` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_entered` datetime NOT NULL,
   `date_modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -285,8 +310,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `password_reset_code`, `first_name`, `last_name`, `address`, `email`, `phone`, `is_admin`, `role_id`, `status`, `deleted`, `created_by`, `modified_by`, `date_entered`, `date_modified`) VALUES
-('1ddd73be-fb69-11e5-91d7-3c07717075d9', 'admin', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Admin', 'Admin', NULL, 'neeraj24a@gmail.com', NULL, 1, '4eee73be-fb69-11e5-91d7-3c07717072c4', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-01-21 00:00:00', '2017-01-21 00:00:00');
+INSERT INTO `users` (`id`, `username`, `password`, `password_reset_code`, `first_name`, `last_name`, `address`, `email`, `phone`, `is_admin`, `role_id`, `status`, `deleted`, `created_by`, `updated_by`, `date_entered`, `date_modified`) VALUES
+('1ddd73be-fb69-11e5-91d7-3c07717075d9', 'admin', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Admin', 'Admin', NULL, 'neeraj24a@gmail.com', '', 1, '4eee73be-fb69-11e5-91d7-3c07717072c4', 1, 0, '1ddd73be-fb69-11e5-91d7-3c07717075d9', '1ddd73be-fb69-11e5-91d7-3c07717075d9', '2017-01-21 00:00:00', '2017-02-08 21:24:27');
 
 -- --------------------------------------------------------
 
