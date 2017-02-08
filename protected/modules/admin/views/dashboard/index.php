@@ -49,7 +49,7 @@
         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
     },
     xAxis: {
-        categories: [
+        /*categories: [
             'Monday',
             'Tuesday',
             'Wednesday',
@@ -57,7 +57,8 @@
             'Friday',
             'Saturday',
             'Sunday'
-        ]
+        ]*/
+        categories: <?php echo $days; ?>
     },
     yAxis: {
         title: {
