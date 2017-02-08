@@ -46,7 +46,10 @@ class DashboardController extends Controller {
 
     public function actionIndex() {
         if (Yii::app()->user->id) {
-            $this->render('index');
+	    $dates = getLastNDays(7, 'Y-m-d');
+	    $days = getLastNDays(7);
+		
+            $this->render('index', array('days',$days));
         } else {
             $this->redirect(CController::createUrl("/admin/login"));
         }
