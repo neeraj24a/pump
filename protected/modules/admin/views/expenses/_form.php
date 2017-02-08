@@ -22,7 +22,7 @@
 		</div>
 		<div class="col-xs-6">
 			<?php echo $form->labelEx($model,'expense_date'); ?>
-			<?php echo $form->textField($model,'expense_date',array('size'=>'60','maxlength'=>'128','class' => 'form-control')); ?>
+			<?php echo $form->textField($model,'expense_date',array('size'=>60,'maxlength'=>255,'class' => 'form-control bootstrap-datepicker')); ?>
 			<?php echo $form->error($model,'expense_date'); ?>
 		</div>
 	</div>
